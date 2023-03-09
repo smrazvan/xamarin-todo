@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:routedapp.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:models="clr-namespace:routedapp.Models"
+             xmlns:models="clr-namespace:routedapp.Models.Tables"
              Title="{Binding Title}"
              x:Name="TodosList"
              x:Class="routedapp.Views.TasksPage"
@@ -39,7 +39,7 @@
                     </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:TodoTask">
+                    <DataTemplate x:DataType="models:TodoModel">
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem

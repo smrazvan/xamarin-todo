@@ -1,4 +1,6 @@
 ﻿using routedapp.Models;
+using routedapp.Models.Tables;
+using routedapp.Services;
 using routedapp.Views;
 using System;
 using System.Collections.Generic;
@@ -7,13 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Xamarin.Forms;
 
 namespace routedapp.ViewModels
 {
     class TasksViewModel : BaseViewModel
     {
-        public ObservableCollection<TodoTask> Tasks {get; set;}
+        public ObservableCollection<TodoModel> Tasks {get; set;} = new ObservableCollection<TodoModel>() { };
 
         private string todoInputTitleValue = string.Empty;
         public string TodoInputTitleValue
@@ -31,22 +34,15 @@ namespace routedapp.ViewModels
 
         public TasksViewModel()
         {
-            Title = "Tasks"; 
-            Tasks = new ObservableCollection<TodoTask>();
-            for(int i = 0; i < 5; i++)
-            {
-                Tasks.Add(new TodoTask()
-                {
-                    Id = i,
-                    Title = $"This is task no {i.ToString()}",
-                    Description = "Something goes here",
-                    IsCompleted = false,
-                });
-            }
-            OnItemTapped = new Command<TodoTask>(async (x) => await ItemTapped(x));
+            Title = "Tasks";
+            //load data asynchrounously
+            IsBusy = true;
+            Refresh();
+
+            OnItemTapped = new Command<TodoModel>(async (x) => await ItemTapped(x));
             OnRefresh = new Command(async () => await Refresh());
-            OnEdit = new Command<TodoTask>(async (x) => await Edit(x));
-            OnDelete = new Command<TodoTask>(async (x) => await Delete(x));
+            OnEdit = new Command<TodoModel>(async (x) => await Edit(x));
+            OnDelete = new Command<TodoModel>(async (x) => await Delete(x));
             OnItemAdded = new Command(async () => await ItemAdded());
         }
 
@@ -56,34 +52,42 @@ namespace routedapp.ViewModels
         public ICommand OnDelete { get; }
         public ICommand OnItemAdded { get; }
 
-        async Task ItemTapped(TodoTask x)
+        async Task ItemTapped(TodoModel x)
         {
             x.IsCompleted = !x.IsCompleted;
+            await TodosRepository.Edit(x);
+            await Refresh();
             var status = x.IsCompleted ? "completed" : "not completed";
             await Application.Current.MainPage.DisplayAlert($"Item was marked as {status}", string.Empty, "OK");
         }
-        async Task Edit(TodoTask x)
+        async Task Edit(TodoModel x)
         {
-            //if (task == null)
-            //    return;
-            await Shell.Current.GoToAsync(nameof(EditTaskPage));
-            //await Application.Current.MainPage.DisplayAlert($"Task {x.Id} was edited", string.Empty, "OK");
+            if (x == null)
+                return;
+            await Shell.Current.GoToAsync($"{nameof(EditTaskPage)}?Id={x.Id}");
 
         }
-        async Task Delete(TodoTask x)
+        async Task Delete(TodoModel todo)
         {
-            //if (task == null)
-            //    return;
-            Tasks.Remove(x);
-            await Application.Current.MainPage.DisplayAlert($"Task {x.Id} was deleted", string.Empty, "OK");
+            if (todo == null)
+                return;
+            await TodosRepository.Remove(todo);
+            await Refresh();
+            await Application.Current.MainPage.DisplayAlert($"Task {todo.Id} was deleted", string.Empty, "OK");
 
         }
         async Task Refresh()
         {
             IsBusy = true;
 
-            await Task.Delay(1000);
+            Tasks.Clear();
 
+            var tasks = await TodosRepository.GetAll();
+
+            foreach(var task in tasks)
+            {
+                Tasks.Add(task);
+            }
             IsBusy = false;
         }
 
@@ -92,16 +96,17 @@ namespace routedapp.ViewModels
             IsBusy = true;
             if(todoInputTitleValue.Trim().Length > 0 && todoInputDescriptionValue.Trim().Length > 0)
             {
-                var rnd = new Random();
-                Tasks.Add(new TodoTask {
-                    Id = Tasks.Last().Id + 1,
+                await TodosRepository.Add(new TodoModel {
                     Title = todoInputTitleValue,
                     Description = todoInputDescriptionValue,
                     IsCompleted = false
-
                 });
+
+                //reset entries
                 TodoInputTitleValue = string.Empty;
                 TodoInputDescriptionValue = string.Empty;
+
+                await Refresh();
                 await Application.Current.MainPage.DisplayAlert("The task has been added", string.Empty, "OK");
             } else
             {

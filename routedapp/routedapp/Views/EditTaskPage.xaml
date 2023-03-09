@@ -13,6 +13,7 @@
             <Entry HorizontalOptions="FillAndExpand" Text="{Binding TodoInputDescriptionValue, Mode=TwoWay}" Placeholder="Enter the task description" />
             <Button Text="Add" Command="{Binding OnEdit}"/>
             <Button Text="Cancel" Command="{Binding OnCancel}" />
+            <Label Text="{Binding Id}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
