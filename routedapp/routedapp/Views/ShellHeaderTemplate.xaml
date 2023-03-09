@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="routedapp.Views.ShellHeaderTemplate">
+    <ContentView.Content>
+        <Grid BackgroundColor="#34495e" HeightRequest="150" VerticalOptions="CenterAndExpand" Padding="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0" Source="user.png" BackgroundColor="Transparent"/>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1">
+                <Label TextColor="White" Text="Hello, name!"/>
+                <Label TextColor="White" Text="Welcome to our app!"/>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
