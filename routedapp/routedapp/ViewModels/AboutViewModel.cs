@@ -9,7 +9,7 @@ namespace routedapp.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "Home";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
 
