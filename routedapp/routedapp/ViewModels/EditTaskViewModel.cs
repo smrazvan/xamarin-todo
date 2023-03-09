@@ -1,4 +1,5 @@
 ﻿using routedapp.Models;
+using routedapp.Models.Tables;
 using routedapp.Services;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace routedapp.ViewModels
         public int Id
         {
             get { return id; }
-            set { SetProperty(ref id, value); }
+            set { SetProperty(ref id, value); SetDefaultInputs(); }
         }
 
         private string todoInputTitleValue = string.Empty;
@@ -42,7 +43,6 @@ namespace routedapp.ViewModels
 
         public EditTaskViewModel()
         {
-            SetDefaultInputs();
             OnEdit = new Command(async () => await Edit());
             OnCancel = new Command(async () => await Cancel());
         }
@@ -52,7 +52,14 @@ namespace routedapp.ViewModels
 
         async Task Edit()
         {
-
+            var todo = new TodoModel()
+            {
+                Id = Id,
+                Title = todoInputTitleValue,
+                Description = todoInputDescriptionValue,
+            };
+            await TodosRepository.Edit(todo);
+            await Shell.Current.GoToAsync("..");
         }
 
         async Task Cancel()

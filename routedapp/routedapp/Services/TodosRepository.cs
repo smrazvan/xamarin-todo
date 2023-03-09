@@ -42,7 +42,8 @@ namespace routedapp.Services
         public static async Task<TodoModel> GetById(int id)
         {
             await Init();
-            return (await db.Table<TodoModel>().Where(td => td.Id == id).FirstOrDefaultAsync());
+            var todoDb = await db.Table<TodoModel>().Where(td => td.Id == id).FirstOrDefaultAsync();
+            return todoDb;
         }
 
         public static async Task Edit(TodoModel todo)
