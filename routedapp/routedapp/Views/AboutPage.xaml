@@ -71,8 +71,9 @@
                 </ScrollView>
             </StackLayout>
             <chart:SfChart
+                
                 HeightRequest="400"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
                 <chart:SfChart.PrimaryAxis>
                     <chart:CategoryAxis />
@@ -85,6 +86,7 @@
                 <chart:SfChart.Series>
                     <chart:LineSeries
                         ItemsSource="{Binding HighTemperature}"
+                        StrokeWidth="5"
                         XBindingPath="XValue"
                         YBindingPath="YValue" />
                 </chart:SfChart.Series>

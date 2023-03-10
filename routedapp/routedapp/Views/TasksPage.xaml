@@ -80,19 +80,6 @@
                                     Text="Delete" />
                             </ViewCell.ContextActions>
                             <Grid Padding="10">
-                                <!--<Grid.Style>
-                                    <Style TargetType="Grid">
-                                        <Style.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding IsCompleted}"
-                                                TargetType="Grid"
-                                                Value="True">
-                                                <Setter Property="BackgroundColor" Value="LightGray" />
-                                                <Setter Property="Opacity" Value="0.4" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Grid.Style>-->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="30" />
