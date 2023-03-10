@@ -70,190 +70,25 @@
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
-            <chart:SfChart VerticalOptions="FillAndExpand">
+            <chart:SfChart
+                HeightRequest="400"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="FillAndExpand">
                 <chart:SfChart.PrimaryAxis>
-                    <chart:CategoryAxis>
-                        <chart:CategoryAxis.Title>
-                            <chart:ChartAxisTitle Text="Inca ceva" />
-                        </chart:CategoryAxis.Title>
-                    </chart:CategoryAxis>
+                    <chart:CategoryAxis />
                 </chart:SfChart.PrimaryAxis>
 
                 <chart:SfChart.SecondaryAxis>
-                    <chart:NumericalAxis>
-                        <chart:NumericalAxis.Title>
-                            <chart:ChartAxisTitle Text="Ceva" />
-                        </chart:NumericalAxis.Title>
-                    </chart:NumericalAxis>
+                    <chart:NumericalAxis />
                 </chart:SfChart.SecondaryAxis>
+
                 <chart:SfChart.Series>
-                    <chart:ColumnSeries
+                    <chart:LineSeries
                         ItemsSource="{Binding HighTemperature}"
                         XBindingPath="XValue"
                         YBindingPath="YValue" />
                 </chart:SfChart.Series>
-                <chart:SfChart.Legend>
-
-                    <chart:ChartLegend />
-
-                </chart:SfChart.Legend>
             </chart:SfChart>
-            <!--<chart:SfChart VerticalOptions="FillAndExpand">
-                <chart:SfChart.PrimaryAxis>
-                    <chart:CategoryAxis>
-                        <chart:CategoryAxis.Title>
-                            <chart:ChartAxisTitle Text="Inca ceva" />
-                        </chart:CategoryAxis.Title>
-                    </chart:CategoryAxis>
-                </chart:SfChart.PrimaryAxis>
-
-                <chart:SfChart.SecondaryAxis>
-                    <chart:NumericalAxis>
-                        <chart:NumericalAxis.Title>
-                            <chart:ChartAxisTitle Text="Ceva" />
-                        </chart:NumericalAxis.Title>
-                    </chart:NumericalAxis>
-                </chart:SfChart.SecondaryAxis>
-                <chart:SfChart.Series>
-                    <chart:ColumnSeries
-                        ItemsSource="{Binding HighTemperature}"
-                        XBindingPath="XValue"
-                        YBindingPath="YValue" />
-                </chart:SfChart.Series>
-                <chart:SfChart.Legend>
-
-                    <chart:ChartLegend />
-
-                </chart:SfChart.Legend>
-            </chart:SfChart>-->
-
-
-            <!--<Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>
-            <Frame
-                Margin="5"
-                Padding="15"
-                BorderColor="AliceBlue">
-                <Label Text="Teest" />
-            </Frame>-->
         </StackLayout>
     </ScrollView>
 </ContentPage>
