@@ -54,6 +54,7 @@ namespace routedapp.ViewModels
 
         async Task ItemTapped(TodoModel x)
         {
+           
             x.IsCompleted = !x.IsCompleted;
             await TodosRepository.Edit(x);
             await Refresh();

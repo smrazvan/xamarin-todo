@@ -1,41 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:routedapp.ViewModels"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:models="clr-namespace:routedapp.Models.Tables"
-             Title="{Binding Title}"
-             x:Name="TodosList"
-             x:Class="routedapp.Views.TasksPage"
-             >
+<ContentPage
+    x:Class="routedapp.Views.TasksPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:routedapp.Models.Tables"
+    xmlns:vm="clr-namespace:routedapp.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="TodosList"
+    Title="{Binding Title}">
     <ContentPage.BindingContext>
         <vm:TasksViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
             <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsCompleted}"
+                        TargetType="Grid"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="LightGray" />
+                        <Setter Property="Opacity" Value="0.4" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextDecorations" Value="None" />
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsCompleted}"
+                        TargetType="Label"
+                        Value="True">
+                        <Setter Property="TextDecorations" Value="Strikethrough" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ListView 
+            <ListView
                 IsPullToRefreshEnabled="True"
-                RefreshCommand="{Binding OnRefresh}"
                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
-                RowHeight="80"
-                ItemsSource="{Binding Tasks}">
+                ItemsSource="{Binding Tasks}"
+                RefreshCommand="{Binding OnRefresh}"
+                RowHeight="80">
                 <ListView.Behaviors>
                     <xct:EventToCommandBehavior
-                        EventName="ItemTapped"
                         Command="{Binding OnItemTapped}"
                         EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
-                    />
+                        EventName="ItemTapped" />
                 </ListView.Behaviors>
                 <ListView.Header>
                     <StackLayout Padding="5,10,5,10" HorizontalOptions="Fill">
-                        <Entry HorizontalOptions="FillAndExpand" Text="{Binding TodoInputTitleValue, Mode=TwoWay}" Placeholder="Enter the task title" />
-                        <Entry HorizontalOptions="FillAndExpand" Text="{Binding TodoInputDescriptionValue, Mode=TwoWay}" Placeholder="Enter the task description" />
-                        <Button Text="Add" Command="{Binding OnItemAdded}"/>
+                        <Entry
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Enter the task title"
+                            Text="{Binding TodoInputTitleValue, Mode=TwoWay}" />
+                        <Entry
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Enter the task description"
+                            Text="{Binding TodoInputDescriptionValue, Mode=TwoWay}" />
+                        <Button Command="{Binding OnItemAdded}" Text="Add" />
                     </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
@@ -53,13 +80,36 @@
                                     Text="Delete" />
                             </ViewCell.ContextActions>
                             <Grid Padding="10">
+                                <!--<Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding IsCompleted}"
+                                                TargetType="Grid"
+                                                Value="True">
+                                                <Setter Property="BackgroundColor" Value="LightGray" />
+                                                <Setter Property="Opacity" Value="0.4" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>-->
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Title}" />
-                                <CheckBox IsChecked="{Binding IsCompleted}" Color="DeepSkyBlue" Grid.Row="0" Grid.Column="1"/>
-                                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Description}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Title}" />
+                                <CheckBox
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    IsChecked="{Binding IsCompleted}"
+                                    Color="DeepSkyBlue" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    Text="{Binding Description}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
