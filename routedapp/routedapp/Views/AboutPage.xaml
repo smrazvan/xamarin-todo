@@ -16,29 +16,244 @@
             <Color x:Key="Accent">#96d1ff</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout>
-        <StackLayout BackgroundColor="{StaticResource Accent}" HorizontalOptions="Fill">
-            <StackLayout
-                HorizontalOptions="Center"
-                Orientation="Horizontal"
-                VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image
-                        HeightRequest="64"
-                        Source="xamarin_logo.png"
-                        VerticalOptions="Center" />
+    <ScrollView Orientation="Vertical">
+        <StackLayout Padding="5" VerticalOptions="Fill">
+            <StackLayout HorizontalOptions="Fill">
+                <Label FontSize="Large" Text="Welcome!" />
+                <ContentView>
+                    <Image Source="nyan.png" VerticalOptions="Center" />
                 </ContentView>
+                <ScrollView Padding="20" Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame
+                            Margin="5"
+                            Padding="15"
+                            BorderColor="AliceBlue">
+                            <Label Text="Teest" />
+                        </Frame>
+                        <Frame
+                            Margin="5"
+                            Padding="15"
+                            BorderColor="AliceBlue">
+                            <Label Text="Teest" />
+                        </Frame>
+                        <Frame
+                            Margin="5"
+                            Padding="15"
+                            BorderColor="AliceBlue">
+                            <Label Text="Teest" />
+                        </Frame>
+                        <Frame
+                            Margin="5"
+                            Padding="15"
+                            BorderColor="AliceBlue">
+                            <Label Text="Teest" />
+                        </Frame>
+                        <Frame
+                            Margin="5"
+                            Padding="15"
+                            BorderColor="AliceBlue">
+                            <Label Text="Teest" />
+                        </Frame>
+                        <Frame
+                            Margin="5"
+                            Padding="15"
+                            BorderColor="AliceBlue">
+                            <Label Text="Teest" />
+                        </Frame>
+                        <Frame
+                            Margin="5"
+                            Padding="15"
+                            BorderColor="AliceBlue">
+                            <Label Text="Teest" />
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
-        </StackLayout>
-        <chart:SfChart VerticalOptions="FillAndExpand">
-            <chart:SfChart.PrimaryAxis>
-                <chart:CategoryAxis />
-            </chart:SfChart.PrimaryAxis>
-            
-            <chart:SfChart.SecondaryAxis>
-                <chart:NumericalAxis />
-            </chart:SfChart.SecondaryAxis>
+            <chart:SfChart VerticalOptions="FillAndExpand">
+                <chart:SfChart.PrimaryAxis>
+                    <chart:CategoryAxis>
+                        <chart:CategoryAxis.Title>
+                            <chart:ChartAxisTitle Text="Inca ceva" />
+                        </chart:CategoryAxis.Title>
+                    </chart:CategoryAxis>
+                </chart:SfChart.PrimaryAxis>
 
-        </chart:SfChart>
-    </StackLayout>
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis>
+                        <chart:NumericalAxis.Title>
+                            <chart:ChartAxisTitle Text="Ceva" />
+                        </chart:NumericalAxis.Title>
+                    </chart:NumericalAxis>
+                </chart:SfChart.SecondaryAxis>
+                <chart:SfChart.Series>
+                    <chart:ColumnSeries
+                        ItemsSource="{Binding HighTemperature}"
+                        XBindingPath="XValue"
+                        YBindingPath="YValue" />
+                </chart:SfChart.Series>
+                <chart:SfChart.Legend>
+
+                    <chart:ChartLegend />
+
+                </chart:SfChart.Legend>
+            </chart:SfChart>
+            <!--<chart:SfChart VerticalOptions="FillAndExpand">
+                <chart:SfChart.PrimaryAxis>
+                    <chart:CategoryAxis>
+                        <chart:CategoryAxis.Title>
+                            <chart:ChartAxisTitle Text="Inca ceva" />
+                        </chart:CategoryAxis.Title>
+                    </chart:CategoryAxis>
+                </chart:SfChart.PrimaryAxis>
+
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis>
+                        <chart:NumericalAxis.Title>
+                            <chart:ChartAxisTitle Text="Ceva" />
+                        </chart:NumericalAxis.Title>
+                    </chart:NumericalAxis>
+                </chart:SfChart.SecondaryAxis>
+                <chart:SfChart.Series>
+                    <chart:ColumnSeries
+                        ItemsSource="{Binding HighTemperature}"
+                        XBindingPath="XValue"
+                        YBindingPath="YValue" />
+                </chart:SfChart.Series>
+                <chart:SfChart.Legend>
+
+                    <chart:ChartLegend />
+
+                </chart:SfChart.Legend>
+            </chart:SfChart>-->
+
+
+            <!--<Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>
+            <Frame
+                Margin="5"
+                Padding="15"
+                BorderColor="AliceBlue">
+                <Label Text="Teest" />
+            </Frame>-->
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
